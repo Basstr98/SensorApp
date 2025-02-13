@@ -387,3 +387,120 @@ The object is already closed [90007-224]
 2025-02-13 21:02:20.764862+01:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
 The object is already closed [90007-224]
+2025-02-13 21:29:05.665005+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: El objeto ya está cerrado
+The object is already closed [90007-224]
+2025-02-13 21:31:58.568842+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (,,,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (,,,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select (,,,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:32:30.111815+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (id,tipo)\000d\000aselect (1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (id,tipo)\000d\000aselect (1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (id,tipo)
+select (1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:33:07.151690+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (,,,,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (,,,,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select (,,,,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:33:22.546525+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect ('','','','','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect ('','','','','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select ('','','','','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:33:55.347353+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (null,null,null,null,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (null,null,null,null,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select (null,null,null,null,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:35:11.282691+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (0,0,0,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect (0,0,0,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select (0,0,0,1,'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:37:53.429646+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect ('0','0','0','1','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "INSERT"
+Syntax error in SQL statement "[*]inser into sensor (magnitud,media,valor,id,tipo)\000d\000aselect ('0','0','0','1','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "INSERT"; SQL statement:
+inser into sensor (magnitud,media,valor,id,tipo)
+select ('0','0','0','1','TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 21:38:09.618127+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]desc sensor"; se esperaba "DELETE, DROP"
+Syntax error in SQL statement "[*]desc sensor"; expected "DELETE, DROP"; SQL statement:
+desc sensor [42001-224]
+2025-02-13 22:15:51.528657+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ALUMNO" no encontrada
+Table "ALUMNO" not found; SQL statement:
+insert into sensor (tipo, magnitud, valor, media)
+select ('TEMPERATURA',0,0,0) from dual where not exists (select 1 from alumno where id = 1) [42102-224]
+2025-02-13 22:16:00.468106+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+insert into sensor (tipo, magnitud, valor, media)
+select ('TEMPERATURA',0,0,0) from dual where not exists (select 1 from sensor where id = 1) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:312)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp.query(WebApp.java:1119)
+	at org.h2.server.web.WebApp.process(WebApp.java:245)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 22:17:32.239063+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "insert into sensor (magnitud, media, valor, tipo)\000d\000aselect (0,0,0[*]'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; se esperaba "[, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "insert into sensor (magnitud, media, valor, tipo)\000d\000aselect (0,0,0[*]'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1)"; expected "[, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+insert into sensor (magnitud, media, valor, tipo)
+select (0,0,0'TEMPERATURA') from dual where not exists (select 1 from sensor where id = 1) [42001-224]
+2025-02-13 22:18:25.340044+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "insert into sensor (magnitud, media, valor, tipo)\000d\000aselect 0,0,0[*]'TEMPERATURA' from dual where not exists (select 1 from sensor where id = 1)"
+Syntax error in SQL statement "insert into sensor (magnitud, media, valor, tipo)\000d\000aselect 0,0,0[*]'TEMPERATURA' from dual where not exists (select 1 from sensor where id = 1)"; SQL statement:
+insert into sensor (magnitud, media, valor, tipo)
+select 0,0,0'TEMPERATURA' from dual where not exists (select 1 from sensor where id = 1) [42000-224]
