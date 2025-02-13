@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "2659322a-ddbc-4fda-b877-5709ee2f9803",
+		"name": "ApirestTicarum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26248184"
+	},
+	"item": [
+		{
+			"name": "RegistrarSensor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tipo",
+							"value": "TEMPERATURA",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TomarMedida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores/:idSensor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores",
+						":idSensor"
+					],
+					"variable": [
+						{
+							"key": "idSensor",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaDeSensores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerValorMedio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores/:idSensor/media/:fechaInicio/:fechaFin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores",
+						":idSensor",
+						"media",
+						":fechaInicio",
+						":fechaFin"
+					],
+					"variable": [
+						{
+							"key": "idSensor",
+							"value": "1"
+						},
+						{
+							"key": "fechaInicio",
+							"value": "13-02-2025 20:22:31"
+						},
+						{
+							"key": "fechaFin",
+							"value": "13-02-2025 20:22:35"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerHistorico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores/:idSensor/histórico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores",
+						":idSensor",
+						"histórico"
+					],
+					"variable": [
+						{
+							"key": "idSensor",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarSensor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticarumapirest/sensores/:idSensor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticarumapirest",
+						"sensores",
+						":idSensor"
+					],
+					"variable": [
+						{
+							"key": "idSensor",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

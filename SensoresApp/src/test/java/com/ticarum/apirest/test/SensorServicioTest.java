@@ -1,81 +1,71 @@
 package com.ticarum.apirest.test;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ticarum.apirest.aplicacion.SensorServicio;
+import com.ticarum.apirest.dominio.Historico;
 import com.ticarum.apirest.dominio.Sensor;
 import com.ticarum.apirest.dominio.TipoSensor;
-import com.ticarum.apirest.presentacion.Controlador;
+import com.ticarum.apirest.infraestructura.SensorRepositorio;
 
-@WebMvcTest(Controlador.class)
 @ExtendWith(MockitoExtension.class)
-class SensorControllerTest {
+class SensorServicioTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Mock
+    private SensorRepositorio sensorRepositorio;
 
-    @MockBean
+    @InjectMocks
     private SensorServicio sensorServicio;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     private Sensor sensor;
 
     @BeforeEach
     void setUp() {
-        sensor = new Sensor();
+        sensor = new Sensor(TipoSensor.TEMPERATURA);
         sensor.setId(1L);
-        sensor.setTipo(TipoSensor.TEMPERATURA);
-        sensor.setValor(25.0);
+        sensor.setValor(25.5);
     }
 
     @Test
-    void testObtenerSensorPorId() throws Exception {
-        when(sensorServicio.getSensor(1L)).thenReturn(Optional.of(sensor));
-
-        mockMvc.perform(get("/sensores/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.tipo").value("TEMPERATURA"))
-                .andExpect(jsonPath("$.valor").value(25.0));
+    void testGenerarValor() {
+        double valor = sensorServicio.generarValor(sensor);
+        assertTrue(valor >= 0 && valor <= 30, "El valor debe estar entre 0 y 30");
     }
 
     @Test
-    void testRegistrarSensor() throws Exception {
-        when(sensorServicio.registrar(any())).thenReturn(sensor);
-
-        mockMvc.perform(post("/sensores")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(sensor)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.tipo").value("TEMPERATURA"));
+    void testRegistrarSensor() {
+        when(sensorRepositorio.save(any(Sensor.class))).thenReturn(sensor);
+        Sensor registrado = sensorServicio.registrar("TEMPERATURA");
+        assertNotNull(registrado);
+        assertEquals(TipoSensor.TEMPERATURA, registrado.getTipo());
     }
 
     @Test
-    void testEliminarSensor() throws Exception {
-        when(sensorServicio.getSensor(1L)).thenReturn(Optional.of(sensor));
-        doNothing().when(sensorServicio).eliminarSensor(sensor);
+    void testGetSensorById() {
+        when(sensorRepositorio.findById(1L)).thenReturn(Optional.of(sensor));
+        Optional<Sensor> encontrado = sensorServicio.getSensor(1L);
+        assertTrue(encontrado.isPresent());
+        assertEquals(25.5, encontrado.get().getValor());
+    }
 
-        mockMvc.perform(delete("/sensores/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("El sensor 1 se ha eliminado correctamente"));
+    @Test
+    void testCalcularMedia() {
+        sensor.getHistoricoValores().add(new Historico(sensor, 10.0));
+        sensor.getHistoricoValores().add(new Historico(sensor, 20.0));
 
-        verify(sensorServicio, times(1)).eliminarSensor(sensor);
+        OptionalDouble media = sensorServicio.calcularMedia(sensor, "13-02-2025 00:00:00", "13-02-2025 23:59:59");
+
+        assertTrue(media.isPresent());
+        assertEquals(15.0, media.getAsDouble());
     }
 }
