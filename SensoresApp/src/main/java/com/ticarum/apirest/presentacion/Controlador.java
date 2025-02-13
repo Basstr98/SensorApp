@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ticarum.apirest.infraestructura.SensorServicio;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 import com.ticarum.apirest.aplicacion.HistoricoDto;
 import com.ticarum.apirest.aplicacion.SensorDto;
 import com.ticarum.apirest.aplicacion.SensorHistDto;
@@ -39,6 +41,7 @@ public class Controlador {
 	
 
 	@GetMapping("/sensores")
+	@Operation( summary = "Obtener lista de sensores", description = "Obtiene la lista de sensores")
 	public List<SensorDto> listarSensores() {
 		List<Sensor> sensores = sensorServicio.listar();
 		List<SensorDto> sdtos = new LinkedList<SensorDto>();
@@ -50,6 +53,7 @@ public class Controlador {
 	}
 	
 	@GetMapping("/sensores/{idSensor}")
+	@Operation( summary = "Toma una medicion de un sensor", description = "Crea un historico y registra una medicion de un sensor")
 	public SensorDto getSensorById(@PathVariable(name="idSensor") String idSensor) {
 		/* Java 8
 		Sensor sensor = sensorServicio.getSensor(Long.parseLong(id))
@@ -70,6 +74,7 @@ public class Controlador {
 	}
 	
 	@GetMapping("/sensores/{idSensor}/media/{fechaInicio}/{fechaFin}")
+	@Operation( summary = "Devuelve el valor medio de las mediciones de un sensor", description = "Devuelve el valor medio en un rango de fechas de las mediciones de un sensor")
 	public SensorDto getValorMedioSensor(@PathVariable(name="idSensor", required = true) String idSensor, 
 			@PathVariable(name="fechaInicio", required = true) String fechaInicio, 
 			@PathVariable(name="fechaFin", required = true) String fechaFin) {
@@ -83,6 +88,7 @@ public class Controlador {
 	}
 	
 	@GetMapping("/sensores/{idSensor}/histórico")
+	@Operation( summary = "Devuelve el listado de historicos de un sensor", description = "Devuelve el conjunto de historicos de un sensor")
 	public SensorHistDto getHistorico(@PathVariable(name="idSensor", required = true) String idSensor) {
 		return sensorServicio.getSensor(Long.parseLong(idSensor)).map(sensor -> {
 			SensorHistDto shdto = (SensorHistDto) sensorServicio.toDto(sensor, SensorHistDto.class);
@@ -96,6 +102,7 @@ public class Controlador {
 	}
 	
 	@DeleteMapping("/sensores/{idSensor}")
+	@Operation( summary = "Elimina un sensor", description = "Elimina un sensor y sus mediciones asociadas")
 	public ResponseEntity<String> deleteSensor(@PathVariable(name="idSensor") String idSensor) {
 		return sensorServicio.getSensor(Long.parseLong(idSensor)).map(sensor -> {
 			sensor.getHistoricoValores().stream().forEach(hist -> {
@@ -107,6 +114,7 @@ public class Controlador {
 	}
 	
 	@PostMapping(value="/sensores")
+	@Operation( summary = "Registra un sensor", description = "Registra un sensor siempre y cuando cumpla los requisitos")
 	public SensorDto registrarSensores(@RequestParam(required = true) String tipo) {	
 		boolean tipoValido = Arrays.stream(TipoSensor.values())
 							.anyMatch(tip -> tip.name().equals(tipo));
