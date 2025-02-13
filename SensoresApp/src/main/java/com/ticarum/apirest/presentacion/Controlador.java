@@ -122,9 +122,5 @@ public class Controlador {
 		}
 		return sensorServicio.toDto(sensorServicio.registrar(tipo), SensorDto.class);
 	}
-	
-	@GetMapping("/")
-	public String hola() {
-		return "hola";
-	}
+
 } 
